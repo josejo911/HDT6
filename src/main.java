@@ -5,104 +5,84 @@
  * Algortimos y estructura de datos
  * on 31/08/2016.
  */
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-
 public class main {
 
-    private JFrame frame;
-    private JTextField textBoxNombre;
-
     /**
-     * Launch the application.
+     * @param args the command line arguments
      */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    main window = new main();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        Scanner teclado = new Scanner(System.in); //Variable para leer los datos ingresados por el usuario
+        boolean flag = true; //Bandera para cuando el usuario ya no quiera ingresar mas nombres
+        int opc; //Variable para guardar la opcion
+        String nombre, conjs; //Variables para guardar la informacion ingresada por el usuario
+        Set<String> java = null, web = null, cel = null;
+        char c;
+
+        //Se muestran las opciones del Set
+        System.out.println("Ingrese que tipo de implementacion Set desea:\n"
+                + "1. HashSet\n"
+                + "2. TreeSet\n"
+                + "3. LinkedHashSet");
+
+        //Se lee la opcion
+        opc = (int)teclado.nextDouble();
+
+        //Dependiendo de la opcion elegido, se instancian las diferentes clases
+        switch(opc) {
+            case 1:
+                java = new HashSet();
+                web = new HashSet();
+                cel = new HashSet();
+                break;
+            case 2:
+                java = new TreeSet();
+                web = new TreeSet();
+                cel = new TreeSet();
+                break;
+            case 3:
+                java = new LinkedHashSet();
+                web = new LinkedHashSet();
+                cel = new LinkedHashSet();
+                break;
+        }
+
+        //Se realiza un ciclo para que el usuario ingrese nombres hasta que eliga que ya no lo desea
+        do{
+            //Se pide el nombre
+            System.out.println("Ingrese el nombre de la persona:");
+
+            teclado.nextLine();
+            nombre = teclado.nextLine();
+
+            //Se muestran las opciones de tipos de desarrolladores
+            System.out.println("Ingrese a los conjuntos que pertenece la persona separados por coma (Ej:1, 2, 3)\n"
+                    + "1. Desarrolladores Java\n"
+                    + "2. Desarrolladores Web\n"
+                    + "3. Desarrolladores Celulares");
+
+            //Se lee la opcion
+            conjs = teclado.nextLine();
+            //Se recorre el string ingresado por el usuario, y segun las opciones que ingreso, se agrega el nombre al Set correspondiente
+            while (!conjs.isEmpty()) {
+                c = conjs.charAt(0);
+                switch (c) {
+                    case '1':
+                        java.add(nombre);
+                        break;
+                    case '2':
+                        web.add(nombre);
+                        break;
+                    case '3':
+                        cel.add(nombre);
+                        break;
                 }
+                conjs = conjs.substring(1);
             }
-        });
+
+            //Se le pregunta el usuario si quiere ingresar otro nombre
+            System.out.println("¿Desea ingresar otro nombre? (si o no)");
+
+            if (teclado.next().equals("no"))
+                flag = false;
+        } while (flag);
     }
-
-    /**
-     * Create the application.
-     */
-    public main() {
-        initialize();
-    }
-
-    /**
-     * Initialize the contents of the frame.
-     */
-    private void initialize() {
-        frame = new JFrame();
-        frame.setTitle("Administrador de desarrolladores");
-        frame.setBounds(100, 100, 659, 404);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
-
-        JLabel lblHojaDeTrabajo = new JLabel("Hoja de Trabajo #6");
-        lblHojaDeTrabajo.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblHojaDeTrabajo.setBounds(30, 24, 168, 23);
-        frame.getContentPane().add(lblHojaDeTrabajo);
-
-        JLabel lblNombre = new JLabel("Ingrese su nombre:");
-        lblNombre.setBounds(30, 112, 94, 14);
-        frame.getContentPane().add(lblNombre);
-
-        textBoxNombre = new JTextField();
-        textBoxNombre.setBounds(134, 109, 161, 20);
-        frame.getContentPane().add(textBoxNombre);
-        textBoxNombre.setColumns(10);
-
-        JLabel lblSeleccioneQueTipo = new JLabel("Seleccione que tipo de implementacion SET desea usar:");
-        lblSeleccioneQueTipo.setFont(new Font("Tahoma", Font.BOLD, 11));
-        lblSeleccioneQueTipo.setBounds(30, 55, 321, 14);
-        frame.getContentPane().add(lblSeleccioneQueTipo);
-
-        JRadioButton rdbtnHASH = new JRadioButton("HashSet");
-        rdbtnHASH.setBounds(30, 76, 83, 23);
-        frame.getContentPane().add(rdbtnHASH);
-
-        JRadioButton rdbtnTREE = new JRadioButton("TreeSet");
-        rdbtnTREE.setBounds(115, 76, 83, 23);
-        frame.getContentPane().add(rdbtnTREE);
-
-        JRadioButton rdbtnLINKHASH = new JRadioButton("LinkedHashSet");
-        rdbtnLINKHASH.setBounds(204, 76, 126, 23);
-        frame.getContentPane().add(rdbtnLINKHASH);
-
-        JLabel lblPorFavorSeleccione = new JLabel("Seleccione sus opciones como desarrollador:");
-        lblPorFavorSeleccione.setFont(new Font("Tahoma", Font.BOLD, 11));
-        lblPorFavorSeleccione.setBounds(30, 143, 265, 14);
-        frame.getContentPane().add(lblPorFavorSeleccione);
-
-        JCheckBox chckbxJava = new JCheckBox("Java");
-        chckbxJava.setBounds(30, 164, 60, 23);
-        frame.getContentPane().add(chckbxJava);
-
-        JCheckBox chckbxMovil = new JCheckBox("Movil");
-        chckbxMovil.setBounds(92, 164, 54, 23);
-        frame.getContentPane().add(chckbxMovil);
-
-        JCheckBox chckbxWeb = new JCheckBox("Web");
-        chckbxWeb.setBounds(161, 164, 54, 23);
-        frame.getContentPane().add(chckbxWeb);
-
-        JButton btnIngresoDatos = new JButton("Ingresar a base de datos");
-        btnIngresoDatos.setFont(new Font("Yu Gothic", Font.BOLD, 12));
-        btnIngresoDatos.setBounds(30, 192, 185, 32);
-        frame.getContentPane().add(btnIngresoDatos);
-    }
-}
