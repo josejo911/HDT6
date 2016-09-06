@@ -5,6 +5,9 @@
  * Algortimos y estructura de datos
  * on 31/08/2016.
  */
+ 
+import java.util.*;
+
 public class main {
 
     /**
