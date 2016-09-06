@@ -70,13 +70,13 @@ public class main {
                 c = conjs.charAt(0);
                 switch (c) {
                     case '1':
-                        java.add(nombre);
+                        java.add(nombre.toLowerCase());
                         break;
                     case '2':
-                        web.add(nombre);
+                        web.add(nombre.toLowerCase());
                         break;
                     case '3':
-                        cel.add(nombre);
+                        cel.add(nombre.toLowerCase());
                         break;
                 }
                 conjs = conjs.substring(1);
