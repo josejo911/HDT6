@@ -88,9 +88,9 @@ public class main {
             if (teclado.next().equals("no"))
                 flag = false;
         } while (flag);
-        
+
         //Primera pregunta
-        System.out.println("\nLos desarrolladores en Java, web y celulares son:");
+        System.out.println("\n1. Los desarrolladores en Java, web y celulares son:");
         for (String s : java) {
             //Se revisa si el nombre encontrado en Java pertenece tambien a Web
             boolean flagWeb = web.contains(s);
@@ -100,18 +100,18 @@ public class main {
                 System.out.println(s);
             }
         }
-        
+
         //Segunda pregunta
-        System.out.println("\nLos desarrollares en Java pero no en web son:");
+        System.out.println("\n2. Los desarrollares en Java pero no en web son:");
         for (String s : java) {
             //Se revisa si el nombre encontrado en Java pertenece tambien a Web
             boolean flagWeb = web.contains(s);
             if (!flagWeb)
                 System.out.println(s);
         }
-        
+
         //Tercera pregunta
-        System.out.println("\nLos desarrollares de Web y Celulares pero no de Java son:");
+        System.out.println("\n3. Los desarrollares de Web y Celulares pero no de Java son:");
         for (String s : web) {
             //Se revisa si el nombre encontrado en Web pertenece tambien a Java
             boolean flagJava = java.contains(s);
@@ -120,9 +120,9 @@ public class main {
             if (!flagJava && flagCel)
                 System.out.println(s);
         }
-        
+
         //Cuarta pregunta
-        System.out.println("\nLos desarrolladores de Web o Celulares pero no de Java");
+        System.out.println("\n4. Los desarrolladores de Web o Celulares pero no de Java son:");
         for (String s : web) {
             //Se revisa si el nombre encontrado en Web pertenece tambien a Java
             boolean flagJava = java.contains(s);
@@ -137,28 +137,28 @@ public class main {
             if (!flagJava && !flagWeb)
                 System.out.println(s);
         }
-        
+
         //Quinta pregunta
         if (web.containsAll(java)) {
-            System.out.println("\nEl conjunto de desarrolladores java SI es un subconjunto de desarrolladores web");
+            System.out.println("\n5. El conjunto de desarrolladores java SI es un subconjunto de desarrolladores web.");
         } else {
-            System.out.println("\nEl conjunto de desarrolladores java NO es un subconjunto de desarrolladores web");
+            System.out.println("\n5. El conjunto de desarrolladores java NO es un subconjunto de desarrolladores web.");
         }
-        
+
         //Sexta y Septima pregunta
         TreeSet<String> sorted = null;
         if (java.size() >= cel.size() && java.size() >= web.size()){
-            System.out.println("\nColeccion mas grande: Desarrolladores de Java");
+            System.out.println("\n6. Coleccion mas grande: Desarrolladores de Java");
             sorted = new TreeSet<String>(java);
-            System.out.println("\nLos desarrolladores de Java ordenados ascendentemente son:");
+            System.out.println("\n7. Los desarrolladores de Java ordenados ascendentemente son:");
         } else if(cel.size() >= java.size() && cel.size() >= web.size()){
-             System.out.println("\nColeccion mas grande: Desarrolladores de Celulares");
+            System.out.println("\n6. Coleccion mas grande: Desarrolladores de Celulares");
             sorted = new TreeSet<String>(cel);
-            System.out.println("\nLos desarrolladores de Celular ordenados ascendentemente son:");
+            System.out.println("\n7. Los desarrolladores de Celular ordenados ascendentemente son:");
         }else {
-             System.out.println("\nColeccion mas grande: Desarrolladores Web");
+            System.out.println("\n6. Coleccion mas grande: Desarrolladores Web");
             sorted = new TreeSet<String>(web);
-            System.out.println("\nLos desarrolladores Web ordenadados ascendentemente son:");
+            System.out.println("\n7. Los desarrolladores Web ordenadados ascendentemente son:");
         }
         for (String s : sorted) {
             System.out.println(s);
